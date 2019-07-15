@@ -8,10 +8,11 @@ Program objectives/How it works:
         
       - At a cell(point A for start), the algorithm looks at all cells surrounding it and calculates:
 	          -> gcost () =	distance from starting node (point A)
-					    (typical for abstract A* algorithms is to have distance between nodes as 1, and multiply by 10 for irradicating FP numbers)
+		    (typical for abstract A* algorithms is to have distance between nodes as 1, and multiply by 10 for 
+		    irradicating FP numbers)
 	          -> hcost () =  heuristic function / distance from end node (point B). 
 	          -> fcost()  = total cost -> gcost() + hcost() 
-      - The algorithm finds the lowest fcosts of the surrounding nodes and then choses that to be the next parent node and repeat the above. 
+      - The algorithm finds the lowest fcosts of the surrounding nodes and then choses that to be the next parent node and repeat the 		above until the end point is found. 
       - If there is obstacles points, they are not evaluated. 
       - If there is two points with the same fcost, the smallest hcost takes preference. 
       - All fcosts are stored and the lowest cost is stored each time
@@ -25,7 +26,8 @@ Notes on code structure:
         
         - The spatial discretization, the mesh, is created using an 2D array of cell data structures (Cell_ds).
         
-        - The array is the contiguous dynamic std::vector(DYN_C2D) which is implemented on the static library. 
+        - The array is the contiguous dynamic std::vector(DYN_C2D) which is implemented on the static library and 
+	  generated in a function for modularity. 
         
         - Each cell holds data which holds its gcost, hcost, fcosts, cell ID, from_cell_ID (for path determination), 
           x_position, y_position etc.
@@ -39,6 +41,8 @@ Notes on code structure:
           -> on_priolist and priolist_index, if true then its on the priority list 
           
         - Calculates for g,h,f costs are done using the member functions of Cell_ds. 
+	
+	- Cell_ds class is encapsulated for code safety. 
         
         - A priority list is used for containing data of cells which have been evaluated. The algorithm selects the next 
           best cell on the priority list with every iteration until the end point is found. 
@@ -47,3 +51,5 @@ Notes on code structure:
           cell values. 
 
 Learning objectives: 
+
+	- Practisting code and data structures 
