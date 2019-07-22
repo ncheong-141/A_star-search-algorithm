@@ -7,10 +7,10 @@ void grid_generation(RMF::DYN_C2D<Cell_ds>& grid, size_t row_PT, size_t col_PT, 
 	
 	
 	// Pre-allocate memory and construct Cell_ds entities. Note, DYN_C2D::emplace_back(object, rows) reserves memory in function, however, with
-	//															 DYN_C2D::emplace_back(objects(parameters)) this has to be done manually. 
+	// DYN_C2D::emplace_back(objects(parameters)) this has to be done manually. 
 
 	grid.reserve(row_PT, col_PT);	// Reserve memory to avoid unneccesary copying.
-									// Furthermore, emplace_back also constructs Cell_ds entity in the vector to further reduce copying
+					// Furthermore, emplace_back also constructs Cell_ds entity in the vector to further reduce copying
 
 	// Predefine counters 
 	int ID = 0;
@@ -39,35 +39,35 @@ void grid_generation(RMF::DYN_C2D<Cell_ds>& grid, size_t row_PT, size_t col_PT, 
 						T edge		= 7 
 						TR corner	= 8
 			*/
-			if (i == 0 && j == 0) {										// Bottom left corner point
+			if (i == 0 && j == 0) {					// Bottom left corner point
 				grid(i, j).set_Boundary_pt(); 
 				grid(i, j).set_Boundary_pt_val(1);
 			}
-			else if (i == 0 && j < col_end_pt) {						// Bottom edge without BR corner
+			else if (i == 0 && j < col_end_pt) {			// Bottom edge without BR corner
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(2);
 			}
-			else if (i == 0 && j == col_end_pt) {						// Bottom right corner
+			else if (i == 0 && j == col_end_pt) {			// Bottom right corner
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(3);
 			}
-			else if (i > 0 && i < row_end_pt && j == 0) {				// Left edge
+			else if (i > 0 && i < row_end_pt && j == 0) {		// Left edge
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(4);
 			}
-			else if (i > 0 && i < row_end_pt && j == col_end_pt) {		// Right edge
+			else if (i > 0 && i < row_end_pt && j == col_end_pt) {	// Right edge
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(5);
 			}
-			else if (i == row_end_pt && j == 0) {						// Top left corner
+			else if (i == row_end_pt && j == 0) {			// Top left corner
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(6);
 			}
-			else if (i == row_end_pt && j > 0 && j < col_end_pt) {		// Top edge
+			else if (i == row_end_pt && j > 0 && j < col_end_pt) {	// Top edge
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(7);
 			}
-			else if (i == row_end_pt && j == col_end_pt) {				// Top right edge
+			else if (i == row_end_pt && j == col_end_pt) {		// Top right edge
 				grid(i, j).set_Boundary_pt();
 				grid(i, j).set_Boundary_pt_val(8);
 			}
@@ -137,7 +137,7 @@ std::vector<Cell_ds> min_FHcost(std::vector<Cell_ds>& priority_list, Cell_ds*& p
 
 	// Initialize a cell in a vector with  minimum fcost for processing (vector as I also may want to return multiple cells in future for optomizing the algortithm)
 	std::vector<Cell_ds> fcost_min_cell;			
-	fcost_min_cell.reserve(1);						// Reserve memory for avoiding initial de-alloc and alloc (copying) 
+	fcost_min_cell.reserve(1);				// Reserve memory for avoiding initial de-alloc and alloc (copying) 
 	fcost_min_cell.push_back(priority_list[0]);		// Initialize cell with any point
 
 	// Predefine size so not constantly calling function when checking loop condition
@@ -155,7 +155,7 @@ std::vector<Cell_ds> min_FHcost(std::vector<Cell_ds>& priority_list, Cell_ds*& p
 
 				// Reset the fcost_min list as a new minimum is found 
 				if (fcost_min_cell.empty() == false) {		// if the list is not empty
-					fcost_min_cell.clear();					// Clears all elements and returns the vector to zero size. Note, capacity is NOT zeroed! 
+					fcost_min_cell.clear();			// Clears all elements and returns the vector to zero size. Note, capacity is NOT zeroed! 
 				}
 				fcost_min_cell.push_back(priority_list[j]);	// Insert the cell into the fcost min vector
 
@@ -165,7 +165,7 @@ std::vector<Cell_ds> min_FHcost(std::vector<Cell_ds>& priority_list, Cell_ds*& p
 
 				// Since fcosts are the same; compare Hcosts and input the cell with the smallest gcost! 
 				if (priority_list[j].get_Hcost() < fcost_min_cell[0].get_Hcost()) {
-					fcost_min_cell.clear();						// Clears all elements and returns the vector to zero size. Note, capacity is NOT zeroed! 
+					fcost_min_cell.clear();				// Clears all elements and returns the vector to zero size. Note, capacity is NOT zeroed! 
 					fcost_min_cell.push_back(priority_list[j]);	// Insert the cell into list of cells with minimum g and f cost. 
 				}
 				// If it occurs that the Hcosts are also the same. Just use any of them... 
@@ -195,8 +195,8 @@ void A_star_algorithm(size_t(&loop_index)[4], RMF::DYN_C2D<Cell_ds>& grid, std::
 
 			// Condition if the cell has been a parent before (don't evaluate) and don't evaulate the actual current parent cell 
 			if (grid(i, j).get_Parent_eval() == true || (j == p_col && i == p_row) || grid(i, j).get_Obstacle() == true) {
-				continue; // Dont evaluate statement which goes to next iteration of for loop 
-						  // In terms of obstacles, not evaluating means it will not be put on the priolist and therefore not considered in the path
+				continue;	 // Dont evaluate statement which goes to next iteration of for loop 
+						 // In terms of obstacles, not evaluating means it will not be put on the priolist and therefore not considered in the path
 			}
 			// Check if it has been a child cell before --> compare the movement costs (gcosts)
 			else if (grid(i, j).get_On_priolist() == true) {
