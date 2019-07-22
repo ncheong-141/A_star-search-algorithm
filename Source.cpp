@@ -15,9 +15,7 @@
 - Do not consider neighbouring nodes which have already been evaluated which have a high fcost() 
 - A ndoe that has been a parent node is not evaluated again as a parent node
 - The path it took to get to the parent node has to be stored as this will hold the optimaoal path. 
-
-*/
-/* How it work again...
+ 
  - Cells and lsits to determine best path
  - Each Cell has a h, g and f value and a parent node
  - Lists: Open and closed list. 
@@ -112,7 +110,7 @@ int main() {
 	Cell_ds pt_B = grid(end_pt[0], end_pt[1]); 
 
 	/* -------------------------- Set first parent cell as start cell -------------------------- */
-	Cell_ds* parent_pt = &pt_A;							// Parent_pt is a pointer which switches from difernt cells (should do that, currently pointing to container for parent cell after the initial condition)..
+	Cell_ds* parent_pt = &pt_A;				// Parent_pt is a pointer which switches from difernt cells (should do that, currently pointing to container for parent cell after the initial condition)..
 	std::vector<Cell_ds> container_for_parent_cell;		// Need to optomize this out if using a vector of possible parent cells is not good. 
 
 	// Calculate costs from initial condition parent and start end points for referencing
@@ -225,8 +223,8 @@ int main() {
 		}
 
 		/* Select new parent cell for the minimum fcost -> minimum hcost if fcosts are the same */
-		container_for_parent_cell = min_FHcost(priority_list, parent_pt, pt_A);			// Not ideal, but using vector for possible optimizations of code structure later
-		parent_pt = &container_for_parent_cell[0];						// Set parent cell pointer to the new parent cell. 
+		container_for_parent_cell = min_FHcost(priority_list, parent_pt, pt_A);	// Not ideal, but using vector for possible optimizations of code structure later
+		parent_pt = &container_for_parent_cell[0];				// Set parent cell pointer to the new parent cell. 
 
 #if DEBUG==0 
 		// Print fcost values of priority list 
@@ -310,11 +308,11 @@ int main() {
 
 		// Get the ID of the parent cell of current cell backtrack_cell_pointer is pointing too. 
 		int from_parent_cell_ID = backtrack_cell_pointer->get_From_Cell_ID();
-		path_cell_IDs.push_back(from_parent_cell_ID);							// Store path cell ID 
+		path_cell_IDs.push_back(from_parent_cell_ID);				// Store path cell ID 
 
 		// Point to the parent cell of the current cell and repeat until the start point is reached. 
 		backtrack_cell_pointer = &grid(from_parent_cell_ID);
-		backtrack_cell_pointer->set_Plot_path_activator();						// Set the cell to plot when called by the plotter
+		backtrack_cell_pointer->set_Plot_path_activator();			// Set the cell to plot when called by the plotter
 	}
 
 	/* ----------------------------------------------- Plot the path --------------------------------------------- */
