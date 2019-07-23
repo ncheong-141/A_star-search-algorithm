@@ -25,7 +25,7 @@ Notes on code structure:
 
         - Algorithm linked to numerical function static library. 
         
-        - The spatial discretization, the mesh, is created using an 2D array of cell data structures (Cell_ds).
+        - The spatial discretization (mesh) is created using an 2D array of cell data structures (Cell_ds).
         
         - The array is the contiguous dynamic std::vector(DYN_C2D) which is implemented on the static library and 
 	  generated in a function for modularity. 
@@ -38,7 +38,7 @@ Notes on code structure:
              since the calculation at these cells are DIFFERENT from other cells. (e.g. you cannot evaluate cells to the
              left on the left wall since they do not exist. 
           -> Obstacle point, if it is an obstacle do not evaluate
-          -> parent_eval, if true then don't re-evaluate as its been a parent vefore
+          -> parent_eval, if true then don't re-evaluate as its been a parent before
           -> on_priolist and priolist_index, if true then its on the priority list 
           
         - Calculates for g,h,f costs are done using the member functions of Cell_ds. 
