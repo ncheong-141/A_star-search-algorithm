@@ -6,20 +6,20 @@
 struct Cell_ds {
 
 private:
-	const int		cell_ID;						// cell ID to identify each cell for path calculations (same as the contigious index!)
-	int				from_cell_ID;					// From where the cell has been defined from (the path it took to reach the cell)
-	const size_t	row_pos, col_pos, contig_pos;	// Cell row and col position for index manipulation
-	const float		x_pos, y_pos;					// The spatial position of the cell centres 
-	int				gcost, heurcost, fcost;			// Cost variables for A* algorithm 
+	const int		cell_ID;				// cell ID to identify each cell for path calculations (same as the contigious index!)
+	int			from_cell_ID;				// From where the cell has been defined from (the path it took to reach the cell)
+	const size_t		row_pos, col_pos, contig_pos;		// Cell row and col position for index manipulation
+	const float		x_pos, y_pos;				// The spatial position of the cell centres 
+	int			gcost, heurcost, fcost;			// Cost variables for A* algorithm 
 
 	/* Cell and boundary cell settings */
-	bool			parent_eval, start_pt, end_pt;			// Logic variables for defining cell types (e.g. if it is the start cell or been evalled)
-	bool			boundary_pt;					// Logic variable for defining if the cell is a boundary_pt (only needs one boolean condition then) 
-	int				boundary_pt_val;				// Each boundary cell will get a value corresponding to left, right edge etc etc. so calculations will not include cells which dont exist 
-	bool			obstacle_pt;					// Logic variable to determine if the cell is an obstacle or not. 
+	bool			parent_eval, start_pt, end_pt;		// Logic variables for defining cell types (e.g. if it is the start cell or been evalled)
+	bool			boundary_pt;				// Logic variable for defining if the cell is a boundary_pt (only needs one boolean condition then) 
+	int			boundary_pt_val;			// Each boundary cell will get a value corresponding to left, right edge etc etc. so calculations will not include cells which dont exist 
+	bool			obstacle_pt;				// Logic variable to determine if the cell is an obstacle or not. 
 	
-	bool			on_priolist;					// Logic variable to determine if the cell is on the priority list
-	size_t			priolist_index;					// Integer variable for where the cell is on the priority list (so can update it)
+	bool			on_priolist;				// Logic variable to determine if the cell is on the priority list
+	size_t			priolist_index;				// Integer variable for where the cell is on the priority list (so can update it)
 
 	// Plot variables (Doesnt need these to run) 
 	bool			plot_path_activator;			// Just for plotting using a simple loop. 
@@ -86,7 +86,7 @@ public:
 
 	// From_node_ID to establish paths 
 	void	set_From_Cell_ID(int setCellIDval)	{ from_cell_ID = setCellIDval;	}		
-	int		get_From_Cell_ID()					{ return from_cell_ID;			}
+	int	get_From_Cell_ID()			{ return from_cell_ID;		}
 
 	// Get cost variables of cell
 	int		get_Gcost() { return gcost; }			
@@ -97,9 +97,9 @@ public:
 	void	set_Gcost(int new_cost) { gcost = new_cost; }
 
 	// Get cell charcteristic data, Note, xpos and ypos does not change
-	float	get_Xpos()			{ return x_pos;	  }
-	float	get_Ypos()			{ return y_pos;	  }
-	int		get_ID()			{ return cell_ID; }
+	float	get_Xpos()		{ return x_pos;	  }
+	float	get_Ypos()		{ return y_pos;	  }
+	int		get_ID()	{ return cell_ID; }
 	size_t	get_Row_pos()		{ return row_pos; }
 	size_t	get_Col_pos()		{ return col_pos; }
 	size_t	get_Contig_pos()	{ return contig_pos; }
