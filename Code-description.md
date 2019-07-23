@@ -2,10 +2,11 @@
 A star search algorithm to find the optimal path from A (start point) to B (target point) around various objects. 
 
 
-Program objectives/How it works: 
+Program objectives:
 
       - A star search algorithm to find the optimal path from A (start point) to B (target point) around various objects. 
         
+	How it works: 
       - At a cell(point A for start), the algorithm looks at all cells surrounding it and calculates:
 	          -> gcost () =	distance from starting node (point A)
 		    (typical for abstract A* algorithms is to have distance between nodes as 1, and multiply by 10 for 
