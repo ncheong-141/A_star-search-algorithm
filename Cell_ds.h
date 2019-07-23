@@ -72,26 +72,26 @@ public:
 	void	set_Parent_eval(bool new_cell_cond) { parent_eval = new_cell_cond; }			
 	bool	get_Parent_eval() { return parent_eval; }
 
-	void	set_Boundary_pt() { boundary_pt = true;  }
-	bool	get_Boundary_pt() { return boundary_pt; }
-	void	set_Boundary_pt_val(int val) { boundary_pt_val = val;  }
-	int		get_Boundary_pt_val() { return boundary_pt_val;  }
-	void	set_Obstacle() { obstacle_pt = true; }
-	bool	get_Obstacle() { return obstacle_pt; }
+	void	set_Boundary_pt() 		{ boundary_pt = true;  }
+	bool	get_Boundary_pt() 		{ return boundary_pt; }
+	void	set_Boundary_pt_val(int val) 	{ boundary_pt_val = val;  }
+	int	get_Boundary_pt_val() 		{ return boundary_pt_val;  }
+	void	set_Obstacle() 			{ obstacle_pt = true; }
+	bool	get_Obstacle()		 	{ return obstacle_pt; }
 
-	void	set_On_priolist() { on_priolist = true;  }
-	bool	get_On_priolist() { return on_priolist; }
-	void	set_Priolist_index(size_t ind) { priolist_index = ind; }
-	size_t	get_Priolist_index() { return priolist_index; }
+	void	set_On_priolist() 		{ on_priolist = true;  }
+	bool	get_On_priolist() 		{ return on_priolist; }
+	void	set_Priolist_index(size_t ind) 	{ priolist_index = ind; }
+	size_t	get_Priolist_index() 		{ return priolist_index; }
 
 	// From_node_ID to establish paths 
 	void	set_From_Cell_ID(int setCellIDval)	{ from_cell_ID = setCellIDval;	}		
 	int	get_From_Cell_ID()			{ return from_cell_ID;		}
 
 	// Get cost variables of cell
-	int		get_Gcost() { return gcost; }			
-	int		get_Hcost() { return heurcost; }
-	int		get_Fcost() { return fcost; }
+	int	get_Gcost() 	{ return gcost; }			
+	int	get_Hcost() 	{ return heurcost; }
+	int	get_Fcost() 	{ return fcost; }
 
 	// Only one setter fucntion for costs (for gcost) as the lower gcost of newer paths can overwrite older paths (updating movement paths)
 	void	set_Gcost(int new_cost) { gcost = new_cost; }
@@ -99,7 +99,7 @@ public:
 	// Get cell charcteristic data, Note, xpos and ypos does not change
 	float	get_Xpos()		{ return x_pos;	  }
 	float	get_Ypos()		{ return y_pos;	  }
-	int		get_ID()	{ return cell_ID; }
+	int	get_ID()		{ return cell_ID; }
 	size_t	get_Row_pos()		{ return row_pos; }
 	size_t	get_Col_pos()		{ return col_pos; }
 	size_t	get_Contig_pos()	{ return contig_pos; }
@@ -107,14 +107,6 @@ public:
 	// Text plotter setter (condition to mark cell to plot as a path) 
 	bool get_Plot_path_activator() { return plot_path_activator; }
 	void set_Plot_path_activator() { plot_path_activator = true;  }
-
-	/* Operator overload to access cells based on their ID */
-
-	/* Operator overload to allow copy?? */
-	//void operator=(Cell_ds& overwriting_values) {
-	//	this = overwriting_values;
-	//}
-
 
 	/* Member functions for manipulating node data*/
 
